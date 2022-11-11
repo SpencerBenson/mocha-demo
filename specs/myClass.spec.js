@@ -23,5 +23,13 @@ describe("Test suite for MyClass", function () {
     myObj.callTheCallback(callbackspy)
     expect(callbackspy.calledOnce).to.be.true
     
-})
+  })
+  it('Mock the sayHello method', function () {
+    const sinonMock = sinon.mock(myObj)
+    const expectation = sinonMock.expects("sayHello")
+    expectation.exactly(1)
+    expectation.withExactArgs('Hello there!')
+    myObj.callAnotherFn(10, 20)
+    sinonMock.verify()
+  })
 })
