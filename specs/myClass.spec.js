@@ -33,3 +33,18 @@ describe("Test suite for MyClass", function () {
     sinonMock.verify()
   })
 })
+
+describe('Test Suit Stubs', function () {
+  it('Stub the add method', function () {
+    const sinonStub = sinon.stub(myObj, 'add')
+    // sinonStub.withArgs(10, 20).returns(100)
+    // expect(myObj.callAnotherFn(10,20)).to.be.equal(100)
+    sinonStub.withArgs(10, 20)
+      .onFirstCall()
+      .returns(100)
+      .onSecondCall()
+    .returns(200)
+    expect(myObj.callAnotherFn(10,20)).to.be.equal(100)
+    expect(myObj.callAnotherFn(10,20)).to.be.equal(200)
+  })
+})
