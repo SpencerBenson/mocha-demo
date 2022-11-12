@@ -58,7 +58,7 @@ describe.skip('Test Suit Stubs', function () {
       expect(result).to.be.equal(6);
     })
     it("Promise test case with chai as promised", () => { 
-      this.timeout(0)
+
       return expect(myObj.testPromise()).to.eventually.equal(6)
     })
   })
