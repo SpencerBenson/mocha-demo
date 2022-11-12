@@ -1,3 +1,4 @@
+'use strict';
 class MyClass{
   constructor() {
       console.log("Initiate")
