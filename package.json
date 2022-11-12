@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha './specs/**/*spec.js'"
+    "test": "mocha './specs/**/*.spec.js'",
+    "coverage": "nyc --reporter=text npm run test"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,11 @@
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "mocha": "^10.1.0",
+    "nyc": "^15.1.0",
     "sinon": "^14.0.2"
+  },
+  "nyc": {
+    "include": "src",
+    "exclude": "specs"
   }
 }

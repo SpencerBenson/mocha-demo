@@ -7,7 +7,24 @@ import  chaiAsPromised from "chai-as-promised"
 chai.use(chaiAsPromised);
 
 
-describe.skip("Test suite for MyClass", function () {
+describe("Test suite for MyClass", function () {
+
+
+    after(function () {
+      // console.log("------after the test suite executes")
+    })
+   before(function () {
+      // console.log("------before the test suite executes")
+    })
+    afterEach(function () {
+      // console.log("------after each the test suite executes")
+    })
+    beforeEach(function () {
+     sinon.restore()
+      // console.log("------before each the test suite executes")
+    })
+  
+  
   it("Test the add method", function () { 
       expect (myObj.add(1,2)).to.equal(3)
   })
@@ -35,9 +52,7 @@ describe.skip("Test suite for MyClass", function () {
     myObj.callAnotherFn(10, 20)
     sinonMock.verify()
   })
-})
 
-describe.skip('Test Suit Stubs', function () {
   it('Stub the add method', function () {
     const sinonStub = sinon.stub(myObj, 'add')
     // sinonStub.withArgs(10, 20).returns(100)
@@ -51,21 +66,6 @@ describe.skip('Test Suit Stubs', function () {
     expect(myObj.callAnotherFn(10,20)).to.be.equal(200)
   })
 
-})
-  describe('Test the promise', function () {
-    after(function () {
-      console.log("------after the test suite executes")
-    })
-   before(function () {
-      console.log("------before the test suite executes")
-    })
-    afterEach(function () {
-      console.log("------after each the test suite executes")
-    })
-    beforeEach(function () {
-     sinon.restore()
-      console.log("------before each the test suite executes")
-    })
     it("Promise test case", async () => { 
       const result = await myObj.testPromise()
       expect(result).to.be.equal(6);
