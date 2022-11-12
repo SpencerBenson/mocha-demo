@@ -1,10 +1,13 @@
-import  MyClass  from '../src/myClass.js'
-import {expect} from 'chai'
+import  MyClass  from '../src/MyClass.js'
+import chai, { expect} from 'chai'
 const myObj = new MyClass()
 import sinon from 'sinon'
+import  chaiAsPromised from "chai-as-promised"
+
+chai.use(chaiAsPromised);
 
 
-describe("Test suite for MyClass", function () {
+describe.skip("Test suite for MyClass", function () {
   it("Test the add method", function () { 
       expect (myObj.add(1,2)).to.equal(3)
   })
@@ -34,7 +37,7 @@ describe("Test suite for MyClass", function () {
   })
 })
 
-describe('Test Suit Stubs', function () {
+describe.skip('Test Suit Stubs', function () {
   it('Stub the add method', function () {
     const sinonStub = sinon.stub(myObj, 'add')
     // sinonStub.withArgs(10, 20).returns(100)
@@ -47,4 +50,15 @@ describe('Test Suit Stubs', function () {
     expect(myObj.callAnotherFn(10,20)).to.be.equal(100)
     expect(myObj.callAnotherFn(10,20)).to.be.equal(200)
   })
+
 })
+  describe('Test the promise', function () {
+    it("Promise test case", async () => { 
+      const result = await myObj.testPromise()
+      expect(result).to.be.equal(6);
+    })
+    it("Promise test case with chai as promised", () => { 
+      this.timeout(0)
+      return expect(myObj.testPromise()).to.eventually.equal(6)
+    })
+  })
