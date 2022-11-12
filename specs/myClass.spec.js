@@ -53,6 +53,19 @@ describe.skip('Test Suit Stubs', function () {
 
 })
   describe('Test the promise', function () {
+    after(function () {
+      console.log("------after the test suite executes")
+    })
+   before(function () {
+      console.log("------before the test suite executes")
+    })
+    afterEach(function () {
+      console.log("------after each the test suite executes")
+    })
+    beforeEach(function () {
+     sinon.restore()
+      console.log("------before each the test suite executes")
+    })
     it("Promise test case", async () => { 
       const result = await myObj.testPromise()
       expect(result).to.be.equal(6);
